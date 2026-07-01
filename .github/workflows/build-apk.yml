@@ -26,7 +26,7 @@ jobs:
           cache: true
 
       - name: Regenerate Android platform files
-        run: flutter create --org com.quality --platforms=android .
+        run: flutter create --org com.quality --project-name quality_wage_app --platforms=android .
 
       - name: Set app display name to "Quality"
         run: |
