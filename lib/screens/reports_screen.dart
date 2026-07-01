@@ -55,23 +55,28 @@ class _TechReport extends StatelessWidget {
           right: '${l.totalRest}: ${nf.format(state.grandTotalRest)}',
         ),
         Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: DataTable(
-              columns: [
-                DataColumn(label: Text(l.technician)),
-                DataColumn(label: Text(l.total), numeric: true),
-                DataColumn(label: Text(l.rest), numeric: true),
-              ],
-              rows: rows
-                  .map((r) => DataRow(cells: [
-                        DataCell(Text(r.name)),
-                        DataCell(Text(nf.format(r.total))),
-                        DataCell(Text(nf.format(r.rest))),
-                      ]))
-                  .toList(),
-            ),
-          ),
+          child: rows.isEmpty
+              ? Center(child: Text(l.noData))
+              : SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      columns: [
+                        DataColumn(label: Text(l.technician)),
+                        DataColumn(label: Text(l.total), numeric: true),
+                        DataColumn(label: Text(l.rest), numeric: true),
+                      ],
+                      rows: rows
+                          .map((r) => DataRow(cells: [
+                                DataCell(Text(r.name)),
+                                DataCell(Text(nf.format(r.total))),
+                                DataCell(Text(nf.format(r.rest))),
+                              ]))
+                          .toList(),
+                    ),
+                  ),
+                ),
         ),
       ],
     );
@@ -95,20 +100,26 @@ class _ProjectReport extends StatelessWidget {
           right: '',
         ),
         Expanded(
-          child: SingleChildScrollView(
-            child: DataTable(
-              columns: [
-                DataColumn(label: Text(l.project)),
-                DataColumn(label: Text(l.total), numeric: true),
-              ],
-              rows: rows
-                  .map((r) => DataRow(cells: [
-                        DataCell(Text(r.name)),
-                        DataCell(Text(nf.format(r.total))),
-                      ]))
-                  .toList(),
-            ),
-          ),
+          child: rows.isEmpty
+              ? Center(child: Text(l.noData))
+              : SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      columns: [
+                        DataColumn(label: Text(l.project)),
+                        DataColumn(label: Text(l.total), numeric: true),
+                      ],
+                      rows: rows
+                          .map((r) => DataRow(cells: [
+                                DataCell(Text(r.name)),
+                                DataCell(Text(nf.format(r.total))),
+                              ]))
+                          .toList(),
+                    ),
+                  ),
+                ),
         ),
       ],
     );

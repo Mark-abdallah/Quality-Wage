@@ -38,7 +38,7 @@ class ExcelService {
     _buildDataBase(excel, projects, technicians);
 
     // Remove the auto-created default sheet if present.
-    if (excel.sheets.containsKey('Sheet1')) {
+    if (excel.tables.containsKey('Sheet1')) {
       excel.delete('Sheet1');
     }
     excel.setDefaultSheet(sData);
